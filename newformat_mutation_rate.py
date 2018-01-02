@@ -68,7 +68,7 @@ def single_sub(pad_lis,name_lis,gene):
     
     fig=sums.plot(kind='bar',figsize=(10,5),title="C->A Frequency",color="black",legend=None)
 
-gene="argF"
+gene="argF" #CHANGE
 pad_lis=["11","31","22","13"] #CHANGE
 name_lis=['WT','mfd','CTD','uvrD'] #CHANGE
 totals= make_df_lis(pad_lis,name_lis,gene) 
