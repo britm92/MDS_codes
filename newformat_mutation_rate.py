@@ -29,10 +29,10 @@ def extract_nodes(file_name):
     nodes=int(line[0])
     return nodes
 
-def make_df_lis(pad_lis,name_lis,gene):
+def make_df_lis(pad_lis,name_lis,gene):  #Mutation rate function
     total_lis=[]
     for i in range(len(pad_lis)):
-        file_name="exoutput/"+gene+pad_lis[i]+"_3"
+        file_name="carmen_data/"+gene+pad_lis[i]+"_3"
         #print(file_name)
         nodes=extract_nodes(file_name)
         df_0=make_df(file_name)
@@ -57,7 +57,7 @@ def filter_sub(df, nuc1,nuc2,sample):
 def single_sub(pad_lis,name_lis,gene):
     df_lis=[]
     for i in range(len(pad_lis)):
-        file_name="exoutput/"+gene+pad_lis[i]+"_3"
+        file_name="carmen_data/"+gene+pad_lis[i]+"_3"
         nodes=extract_nodes(file_name)
         df_i=make_df(file_name)
         df_C_A=filter_sub(df_i,'C','A',name_lis[i])
@@ -68,9 +68,9 @@ def single_sub(pad_lis,name_lis,gene):
     
     fig=sums.plot(kind='bar',figsize=(10,5),title="C->A Frequency",color="black",legend=None)
 
-gene="argF" #CHANGE
-pad_lis=["11","31","22","13"] #CHANGE
-name_lis=['WT','mfd','CTD','uvrD'] #CHANGE
+gene="argC" #CHANGE
+pad_lis=["11","31","21","12","22","13","32","23"] #CHANGE
+name_lis=['EX WT(1)','EX WT(2)','EX WT +Arg(1)','EX WT +Arg(2)',"ST WT(1)","ST WT(2)","ST WT +Arg(1)","ST WT +Arg(2)"] #CHANGE
 totals= make_df_lis(pad_lis,name_lis,gene) 
 print(totals)
 y_pos=np.arange(len(name_lis))
@@ -78,6 +78,7 @@ sns.set_style('whitegrid')
 sns.barplot(x=name_lis,y=totals,color='grey',linewidth=2.5,edgecolor=".2")
 #plt.xticks(y_pos,name_lis)
 plt.ylabel("Mutations per nucleotide generation")
-sns.plt.savefig('MDS_test.pdf',transparent=True)
+plt.rcParams["figure.figsize"] = [20,9]
+#sns.plt.savefig('MDS_test.pdf',transparent=True)
 plt.show()
 
